@@ -52,19 +52,23 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         destinations: [
           NavigationDestination(
-            icon: const FaIcon(FontAwesomeIcons.circleUser),
+            selectedIcon: const FaIcon(FontAwesomeIcons.solidCircleUser),
+            icon:  const FaIcon(FontAwesomeIcons.circleUser),
             label: Languages.about(),
           ),
           const NavigationDestination(
+            selectedIcon: FaIcon(FontAwesomeIcons.solidHeart),
             icon: FaIcon(FontAwesomeIcons.heart),
             label: 'Hobbies',
           ),
           NavigationDestination(
+            selectedIcon: const FaIcon(FontAwesomeIcons.solidCommentDots),
             icon: const FaIcon(FontAwesomeIcons.commentDots),
             label: Languages.comments(),
           ),
           NavigationDestination(
-            icon: const FaIcon(FontAwesomeIcons.gear),
+            icon: const Icon(Icons.settings_outlined),
+            selectedIcon: const Icon(Icons.settings),
             label: Languages.config(),
           ),
         ],
