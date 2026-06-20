@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portafolio_gabriel/languages/languages.dart';
+import 'package:portafolio_gabriel/widgets/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,26 +11,37 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int currentPageIndex = 0;
+  int _currentPageIndex = 0;
   final PageController _pageController = PageController();
 
   @override
   void dispose() {
-    _pageController.dispose(); 
+    _pageController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.red),
+      appBar: <PreferredSizeWidget>[
+        CustomAppBar(
+          icon: FontAwesomeIcons.circleUser,
+          text: Languages.about(),
+        ),
+        const CustomAppBar(icon: FontAwesomeIcons.heart, text: 'Hobbies'),
+        CustomAppBar(
+          icon: FontAwesomeIcons.commentDots,
+          text: Languages.comments(),
+        ),
+        CustomAppBar2(icon: Icons.settings_outlined, text: Languages.config()),
+      ][_currentPageIndex],
       body: Stack(
         children: [
           PageView(
             physics: const BouncingScrollPhysics(),
             controller: _pageController,
             onPageChanged: (index) {
-              setState(() => currentPageIndex = index );
+              setState(() => _currentPageIndex = index);
             },
             children: [
               const Text('A'),
@@ -41,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       bottomNavigationBar: NavigationBar(
-        selectedIndex: currentPageIndex,
+        selectedIndex: _currentPageIndex,
         onDestinationSelected: (int index) {
           //Languages.selectedLanguageIndex = Languages.selectedLanguageIndex == 1 ? 0 : 1; // Prueba de cambio de idiomas
           _pageController.animateToPage(
@@ -53,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
         destinations: [
           NavigationDestination(
             selectedIcon: const FaIcon(FontAwesomeIcons.solidCircleUser),
-            icon:  const FaIcon(FontAwesomeIcons.circleUser),
+            icon: const FaIcon(FontAwesomeIcons.circleUser),
             label: Languages.about(),
           ),
           const NavigationDestination(
