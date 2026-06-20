@@ -7,4 +7,7 @@ class Languages {
   static String comments() {
     return ['Comentarios', 'Comments'][selectedLanguageIndex];
   }
+  static String config() {
+    return ['Configuración', 'Config'][selectedLanguageIndex];
+  }
 }

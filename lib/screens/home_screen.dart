@@ -11,6 +11,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentPageIndex = 0;
+  final PageController _pageController = PageController();
+
+  @override
+  void dispose() {
+    _pageController.dispose(); 
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,33 +26,46 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Stack(
         children: [
           PageView(
+            physics: const BouncingScrollPhysics(),
+            controller: _pageController,
+            onPageChanged: (index) {
+              setState(() => currentPageIndex = index );
+            },
             children: [
-              Text('A'),
-              Text('B ')
+              const Text('A'),
+              const Text('B '),
+              const Text('C'),
+              const Text('D'),
             ],
-          )
+          ),
         ],
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: currentPageIndex,
-        onDestinationSelected: (int index) =>
-            setState(() => currentPageIndex = index),
+        onDestinationSelected: (int index) {
+          //Languages.selectedLanguageIndex = Languages.selectedLanguageIndex == 1 ? 0 : 1; // Prueba de cambio de idiomas
+          _pageController.animateToPage(
+            index,
+            duration: const Duration(milliseconds: 400),
+            curve: Curves.easeInOut,
+          );
+        },
         destinations: [
           NavigationDestination(
-            icon: FaIcon(FontAwesomeIcons.circleUser),
+            icon: const FaIcon(FontAwesomeIcons.circleUser),
             label: Languages.about(),
           ),
-          NavigationDestination(
+          const NavigationDestination(
             icon: FaIcon(FontAwesomeIcons.heart),
             label: 'Hobbies',
           ),
           NavigationDestination(
-            icon: FaIcon(FontAwesomeIcons.commentDots),
+            icon: const FaIcon(FontAwesomeIcons.commentDots),
             label: Languages.comments(),
           ),
           NavigationDestination(
-            icon: FaIcon(FontAwesomeIcons.gear),
-            label: 'Hobbies',
+            icon: const FaIcon(FontAwesomeIcons.gear),
+            label: Languages.config(),
           ),
         ],
       ),
