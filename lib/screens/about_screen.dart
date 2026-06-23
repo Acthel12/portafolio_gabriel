@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portafolio_gabriel/languages/languages.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
@@ -9,7 +11,6 @@ class AboutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeColors = Theme.of(context).colorScheme;
-    
 
     return Scaffold(
       floatingActionButtonLocation: ExpandableFab.location,
@@ -22,36 +23,57 @@ class AboutScreen extends StatelessWidget {
         type: ExpandableFabType.up,
         distance: 70,
         overlayStyle: ExpandableFabOverlayStyle(
-          color: Colors.white.withValues(alpha: 0.9),
+          color: themeColors.surface.withValues(alpha: 0.9),
         ),
         children: [
           Row(
             children: [
-              Text(Languages.FAB1()),
+              Text(Languages.fab1()),
               const SizedBox(width: 20),
               FloatingActionButton.small(
                 child: const FaIcon(FontAwesomeIcons.info),
-                onPressed: () {},
+                onPressed: () {
+                  infoAlert(
+                    context,
+                    Languages.fab1(),
+                    'Github/Acthel12\n0416-5963628\ngecgpro12@gmail.com',
+                    Languages.copy(),
+                  );
+                },
               ),
             ],
           ),
           Row(
             children: [
-              Text(Languages.FAB2()),
+              Text(Languages.fab2()),
               const SizedBox(width: 20),
               FloatingActionButton.small(
                 child: const FaIcon(FontAwesomeIcons.phoneVolume),
-                onPressed: () {},
+                onPressed: () {
+                  infoAlert(
+                    context,
+                    Languages.fab2(),
+                    '0416-5963628',
+                    Languages.copy(),
+                  );
+                },
               ),
             ],
           ),
           Row(
             children: [
-              Text(Languages.FAB3()),
+              Text(Languages.fab3()),
               const SizedBox(width: 20),
               FloatingActionButton.small(
                 child: const FaIcon(FontAwesomeIcons.envelope),
-                onPressed: () {},
+                onPressed: () {
+                  infoAlert(
+                    context,
+                    Languages.fab3(),
+                    'gecgpro12@gmail.com',
+                    Languages.copy(),
+                  );
+                },
               ),
             ],
           ),
@@ -61,7 +83,14 @@ class AboutScreen extends StatelessWidget {
               const SizedBox(width: 20),
               FloatingActionButton.small(
                 child: const FaIcon(FontAwesomeIcons.github),
-                onPressed: () {},
+                onPressed: () {
+                  infoAlert(
+                    context,
+                    'Github',
+                    'Github/Acthel12',
+                    Languages.goTo(),
+                  );
+                },
               ),
             ],
           ),
@@ -86,7 +115,9 @@ class AboutScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 130),
                       decoration: BoxDecoration(
                         color: themeColors.surfaceContainerHighest,
-                        borderRadius: const BorderRadius.all(Radius.circular(30)),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(30),
+                        ),
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -120,12 +151,71 @@ class AboutScreen extends StatelessWidget {
                       ),
                       child: CircleAvatar(
                         backgroundColor: themeColors.secondary,
+                        backgroundImage: const AssetImage(
+                          'assets/images/perfil.png',
+                        ),
                       ),
                     ),
                   ),
                 ],
               ),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _openGitHub(BuildContext context) async {
+    final Uri urlGitHub = Uri.parse('https://github.com/Acthel12');
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+
+    if (await canLaunchUrl(urlGitHub)) {
+      await launchUrl(urlGitHub, mode: LaunchMode.externalApplication);
+    } else {
+      scaffoldMessenger.showSnackBar(
+        SnackBar(
+          content: Text(Languages.errorURL()),
+          duration: const Duration(seconds: 3),
+        ),
+      );
+    }
+  }
+
+  Future<dynamic> infoAlert(
+    BuildContext context,
+    String title,
+    String content,
+    String actions,
+  ) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(title),
+        content: Text(content),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              if (actions == Languages.copy()) {
+                Clipboard.setData(ClipboardData(text: content));
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(Languages.copyTextSuccess()),
+                    duration: const Duration(seconds: 3),
+                  ),
+                );
+              } else {
+                _openGitHub(context);
+              }
+              Navigator.pop(context);
+            },
+            child: Text(actions),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child:  Text(Languages.exit()),
           ),
         ],
       ),
