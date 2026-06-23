@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portafolio_gabriel/languages/languages.dart';
-import 'package:portafolio_gabriel/screens/about_screen.dart';
-import 'package:portafolio_gabriel/screens/comment_screen.dart';
-import 'package:portafolio_gabriel/screens/config_screen.dart';
-import 'package:portafolio_gabriel/screens/hobbies_screen.dart';
+import 'package:portafolio_gabriel/screens/screens.dart';
 import 'package:portafolio_gabriel/widgets/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
