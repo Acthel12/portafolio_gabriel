@@ -60,4 +60,13 @@ class Languages {
   static String english() {
     return ['Inglés', 'English'][selectedLanguageIndex];
   }
+  static String dark() {
+    return ['Oscuro','Dark'][selectedLanguageIndex];
+  }
+  static String light() {
+    return ['Claro','Light'][selectedLanguageIndex];
+  }
+  static String theme() {
+    return ['Tema','Theme'][selectedLanguageIndex];
+  }
 }
