@@ -10,7 +10,7 @@ class AboutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeColors = Theme.of(context).colorScheme;
+    final theme = Theme.of(context);
 
     return Scaffold(
       floatingActionButtonLocation: ExpandableFab.location,
@@ -23,7 +23,7 @@ class AboutScreen extends StatelessWidget {
         type: ExpandableFabType.up,
         distance: 70,
         overlayStyle: ExpandableFabOverlayStyle(
-          color: themeColors.surface.withValues(alpha: 0.9),
+          color: theme.colorScheme.surface.withValues(alpha: 0.9),
         ),
         children: [
           Row(
@@ -114,7 +114,7 @@ class AboutScreen extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.only(top: 130),
                       decoration: BoxDecoration(
-                        color: themeColors.surfaceContainerHighest,
+                        color: theme.colorScheme.surfaceContainerHighest,
                         borderRadius: const BorderRadius.all(
                           Radius.circular(30),
                         ),
@@ -122,7 +122,7 @@ class AboutScreen extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          const Text('Gabriel Carneiro'),
+                          Text('Gabriel Carneiro', style: theme.textTheme.headlineSmall,),
                           Text(
                             Languages.description(),
                             textAlign: TextAlign.center,
@@ -146,11 +146,11 @@ class AboutScreen extends StatelessWidget {
                       height: 240,
                       width: 240,
                       decoration: BoxDecoration(
-                        color: themeColors.surface,
+                        color: theme.colorScheme.surface,
                         shape: BoxShape.circle,
                       ),
                       child: CircleAvatar(
-                        backgroundColor: themeColors.secondary,
+                        backgroundColor: theme.colorScheme.secondary,
                         backgroundImage: const AssetImage(
                           'assets/images/perfil.png',
                         ),
