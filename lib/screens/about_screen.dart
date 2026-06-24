@@ -114,7 +114,7 @@ class AboutScreen extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.only(top: 130),
                       decoration: BoxDecoration(
-                        color: theme.colorScheme.surfaceContainerHighest,
+                        color: theme.colorScheme.surface,
                         borderRadius: const BorderRadius.all(
                           Radius.circular(30),
                         ),
@@ -146,7 +146,7 @@ class AboutScreen extends StatelessWidget {
                       height: 240,
                       width: 240,
                       decoration: BoxDecoration(
-                        color: theme.colorScheme.surface,
+                        color: theme.scaffoldBackgroundColor,
                         shape: BoxShape.circle,
                       ),
                       child: CircleAvatar(

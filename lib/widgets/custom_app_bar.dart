@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key, required this.icon, required this.text});
 
-  final FaIconData icon;
+  final Widget icon;
   final String text;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: Center(child: FaIcon(icon)),
+      backgroundColor: Theme.of(context).colorScheme.primary,
+      foregroundColor: Theme.of(context).colorScheme.onPrimary,
+      leading: Center(child: icon),
       title: Text(text),
     );
   }

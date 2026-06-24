@@ -26,15 +26,15 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: <PreferredSizeWidget>[
         CustomAppBar(
-          icon: FontAwesomeIcons.circleUser,
+          icon: const FaIcon(FontAwesomeIcons.circleUser),
           text: Languages.about(),
         ),
-        const CustomAppBar(icon: FontAwesomeIcons.heart, text: 'Hobbies'),
+        const CustomAppBar(icon: FaIcon(FontAwesomeIcons.heart), text: 'Hobbies'),
         CustomAppBar(
-          icon: FontAwesomeIcons.commentDots,
+          icon: const FaIcon(FontAwesomeIcons.commentDots),
           text: Languages.comments(),
         ),
-        CustomAppBar2(icon: Icons.settings_outlined, text: Languages.config()),
+        CustomAppBar(icon: const Icon(Icons.settings_outlined), text: Languages.config()),
       ][_currentPageIndex],
       body: Stack(
         children: [
@@ -48,7 +48,9 @@ class _HomeScreenState extends State<HomeScreen> {
               const AboutScreen(),
               const HobbiesScreen(),
               const CommentScreen(),
-              const ConfigScreen(),
+              ConfigScreen(onLanguageChanged: (){setState(() {
+                
+              });},),
             ],
           ),
         ],

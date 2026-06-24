@@ -51,4 +51,13 @@ class Languages {
   static String exit() {
     return ['Salir', 'Exit'][selectedLanguageIndex];
   }
+  static String language() {
+    return ['Idioma', 'Language'][selectedLanguageIndex];
+  }
+  static String spanish() {
+    return ['Español', 'Spanish'][selectedLanguageIndex];
+  }
+  static String english() {
+    return ['Inglés', 'English'][selectedLanguageIndex];
+  }
 }
