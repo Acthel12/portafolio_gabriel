@@ -23,62 +23,68 @@ class _ConfigScreenState extends State<ConfigScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const SizedBox(height: 50),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      Languages.language(),
-                      style: theme.textTheme.headlineSmall,
-                    ),
-                    const SizedBox(height: 20),
-                    LanguagesMenu(
-                      onLanguageChanged: () {
-                        setState(() {});
-                        widget.onLanguageChanged();
-                      },
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 50),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      Languages.theme(),
-                      style: theme.textTheme.headlineSmall,
-                    ),
-                    DropdownMenu<ThemeMode>(
-                      dropdownMenuEntries: <DropdownMenuEntry<ThemeMode>>[
-                        const DropdownMenuEntry<ThemeMode>(
-                          value: ThemeMode.system,
-                          label: 'Auto',
-                        ),
-                        DropdownMenuEntry<ThemeMode>(
-                          value: ThemeMode.dark,
-                          label: Languages.dark(),
-                        ),
-                        DropdownMenuEntry<ThemeMode>(
-                          value: ThemeMode.light,
-                          label: Languages.light(),
-                        ),
-                      ],
-                      initialSelection: currentMode,
-                      onSelected: (value) {
-                        setState(() {});
-                        if (value != null) {
-                          mainAppState?.changeTheme(value);
-                        }
-                      },
-                    ),
-                  ],
-                ),
-              ],
+          Container(
+            margin: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: theme.colorScheme.surface,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        Languages.language(),
+                        style: theme.textTheme.headlineSmall,
+                      ),
+                      const SizedBox(height: 20),
+                      LanguagesMenu(
+                        onLanguageChanged: () {
+                          setState(() {});
+                          widget.onLanguageChanged();
+                        },
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 50),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        Languages.theme(),
+                        style: theme.textTheme.headlineSmall,
+                      ),
+                      DropdownMenu<ThemeMode>(
+                        dropdownMenuEntries: <DropdownMenuEntry<ThemeMode>>[
+                          const DropdownMenuEntry<ThemeMode>(
+                            value: ThemeMode.system,
+                            label: 'Auto',
+                          ),
+                          DropdownMenuEntry<ThemeMode>(
+                            value: ThemeMode.dark,
+                            label: Languages.dark(),
+                          ),
+                          DropdownMenuEntry<ThemeMode>(
+                            value: ThemeMode.light,
+                            label: Languages.light(),
+                          ),
+                        ],
+                        initialSelection: currentMode,
+                        onSelected: (value) {
+                          setState(() {});
+                          if (value != null) {
+                            mainAppState?.changeTheme(value);
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ],
