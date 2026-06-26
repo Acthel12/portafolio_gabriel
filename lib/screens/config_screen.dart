@@ -24,7 +24,7 @@ class _ConfigScreenState extends State<ConfigScreen> {
       body: Stack(
         children: [
           Container(
-            margin: const EdgeInsets.all(8),
+            margin: const EdgeInsets.all(15),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: theme.colorScheme.surface,
@@ -39,7 +39,6 @@ class _ConfigScreenState extends State<ConfigScreen> {
                     children: [
                       Text(
                         Languages.language(),
-                        style: theme.textTheme.headlineSmall,
                       ),
                       const SizedBox(height: 20),
                       LanguagesMenu(
@@ -56,7 +55,6 @@ class _ConfigScreenState extends State<ConfigScreen> {
                     children: [
                       Text(
                         Languages.theme(),
-                        style: theme.textTheme.headlineSmall,
                       ),
                       DropdownMenu<ThemeMode>(
                         dropdownMenuEntries: <DropdownMenuEntry<ThemeMode>>[
