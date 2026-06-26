@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portafolio_gabriel/database/comment_database.dart';
 import 'package:portafolio_gabriel/languages/languages.dart';
 import 'package:portafolio_gabriel/models/comment.dart';
 
@@ -10,20 +11,7 @@ class CommentScreen extends StatefulWidget {
 }
 
 class _CommentScreenState extends State<CommentScreen> {
-  List<Comment> comments = [
-    Comment(
-      name: 'John Doe',
-      title: 'Great App',
-      comment: 'I really like this app!',
-      idlanguage: 1,
-    ),
-    Comment(
-      name: 'Jane Smith',
-      title: 'Excelente Aplicación',
-      comment: '¡Me gusta mucho esta aplicación!',
-      idlanguage: 0,
-    ),
-  ];
+ 
 
   bool openInputScreen = false;
 
@@ -41,7 +29,7 @@ class _CommentScreenState extends State<CommentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final currentLanguageComments = comments
+    final currentLanguageComments = CommentDatabase.comments
         .where(
           (comment) => comment.idlanguage == Languages.selectedLanguageIndex,
         )
@@ -168,7 +156,7 @@ class _CommentScreenState extends State<CommentScreen> {
                             FocusManager.instance.primaryFocus?.unfocus();
 
                             setState(() {
-                              comments.add(
+                              CommentDatabase.comments.add(
                                 Comment(
                                   name: nameController.text,
                                   title: titleController.text,
