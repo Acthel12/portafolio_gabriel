@@ -8,6 +8,9 @@ class Languages {
   static String comments() {
     return ['Comentarios', 'Comments'][selectedLanguageIndex];
   }
+  static String noComments() {
+    return ['No hay comentarios', 'No comments'][selectedLanguageIndex];
+  }
 
   static String config() {
     return ['Configuración', 'Config'][selectedLanguageIndex];
@@ -114,5 +117,37 @@ class Languages {
 
   static String close() {
     return ['Cerrar', 'Close'][selectedLanguageIndex];
+  }
+
+  static String newComment() {
+    return ['Nuevo comentario', 'New comment'][selectedLanguageIndex];
+  }
+
+  static String nameLabel() {
+    return ['Nombre', 'Name'][selectedLanguageIndex];
+  }
+
+  static String nameHint() {
+    return ['Introduce tu nombre', 'Enter your name'][selectedLanguageIndex];
+  }
+
+  static String titleLabel() {
+    return ['Título del comentario', 'Comment title'][selectedLanguageIndex];
+  }
+
+  static String titleHint() {
+    return ['Introduce el título del comentario', 'Enter the comment title'][selectedLanguageIndex];
+  }
+
+  static String commentLabel() {
+    return ['Comentario', 'Comment'][selectedLanguageIndex];
+  }
+
+  static String commentHint() {
+    return ['Introduce tu comentario', 'Enter your comment'][selectedLanguageIndex];
+  }
+
+  static String publishComment() {
+    return ['Publicar comentario', 'Publish comment'][selectedLanguageIndex];
   }
 }

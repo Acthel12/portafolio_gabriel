@@ -46,7 +46,8 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             children: [
               const AboutScreen(),
-              const HobbiesScreen(),
+              // ignore: prefer_const_constructors
+              HobbiesScreen(),
               const CommentScreen(),
               ConfigScreen(onLanguageChanged: (){setState(() {
                 
