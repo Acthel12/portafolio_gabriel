@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portafolio_gabriel/languages/languages.dart';
 import 'package:portafolio_gabriel/models/hobby.dart';
 
 class HobbiesScreen extends StatefulWidget {
@@ -11,48 +12,39 @@ class HobbiesScreen extends StatefulWidget {
 class _HobbiesScreenState extends State<HobbiesScreen> {
   int? _selectedCardId;
 
-  final List<Hobby> hobbiesList = [
-    Hobby(
-      id: 1,
-    title: 'Música',
-    subtitle: 'Escuchar y tocar',
-      imagePath: 'assets/images/musica.jpg',
-    description:
-      'Disfruto escuchar música mientras trabajo y también practico algún instrumento.',
-    ),
-    Hobby(
-      id: 2,
-      title: 'Lectura',
-    subtitle: 'Viajar sin salir de casa',
-      imagePath: 'assets/images/leer.png',
-    description:
-      'Me gusta leer novelas, libros y mangas.',
-    ),
-    Hobby(
-      id: 3,
-      title: 'Natación',
-    subtitle: 'Ejercicio para mantener el cuerpo sano',
-      imagePath: 'assets/images/natación.jpg',
-    description:
-      'Practico natación de vez en cuando.',
-    ),
-    Hobby(
-      id: 4,
-    title: 'Programación',
-    subtitle: 'Aprender y crear proyectos',
-      imagePath: 'assets/images/programación.jpg',
-    description:
-      'Me gusta aprender a programar y crear proyectos; quiero llegar a hacer un videojuego algún día.',
-    ),
-    Hobby(
-      id: 5,
-      title: 'Videojuegos',
-    subtitle: 'Recreación en casa',
-      imagePath: 'assets/images/videojuegos.jpg',
-    description:
-      'Me gusta jugar títulos como Minecraft, War Thunder y RimWorld.',
-    ),
+  static const List<Map<String, dynamic>> _hobbyData = [
+    {
+      'id': 1,
+      'imagePath': 'assets/images/musica.jpg',
+    },
+    {
+      'id': 2,
+      'imagePath': 'assets/images/leer.png',
+    },
+    {
+      'id': 3,
+      'imagePath': 'assets/images/natación.jpg',
+    },
+    {
+      'id': 4,
+      'imagePath': 'assets/images/programación.jpg',
+    },
+    {
+      'id': 5,
+      'imagePath': 'assets/images/videojuegos.jpg',
+    },
   ];
+
+  List<Hobby> get hobbiesList => _hobbyData.map((hobbyData) {
+        final id = hobbyData['id'] as int;
+        return Hobby(
+          id: id,
+          title: Languages.hobbyTitle(id),
+          subtitle: Languages.hobbySubtitle(id),
+          imagePath: hobbyData['imagePath'] as String,
+          description: Languages.hobbyDescription(id),
+        );
+      }).toList();
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +128,7 @@ class CardSelected extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                FilledButton(onPressed: onClose, child: const Text('Cerrar')),
+                FilledButton(onPressed: onClose, child: Text(Languages.close())),
               ],
             ),
           ),
