@@ -37,6 +37,7 @@ Esta app muestra una presentación personal con las siguientes secciones:
 - `flutter_expandable_fab`
 - `font_awesome_flutter`
 - `url_launcher`
+- `flutter_launcher_icon`
 
 ## 💻 Requisitos
 
